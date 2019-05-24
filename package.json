@@ -1,0 +1,50 @@
+{
+  "name": "app-electron",
+  "version": "1.0.0",
+  "description": "Minimalist Electron scaffolding",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "npm install && npm run main",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "openthcID",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "icon": "build/favicon-256x256.png",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
+  },
+  "repository": "https://github.com/openthc/app-electron",
+  "author": {
+    "name": "OpenTHC, Inc.",
+    "email": "root@openthc.com",
+    "url": "https://openthc.com"
+  },
+  "license": "GPLv3",
+  "devDependencies": {
+    "electron": "^5.0.0",
+    "electron-builder": "^20.40.2"
+  },
+  "dependencies": {}
+}
