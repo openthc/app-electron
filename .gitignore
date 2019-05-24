@@ -1,0 +1,9 @@
+# Source: https://gist.github.com/Vj3k0/a934076c4cca30ec8e54
+#directories
+bower_components
+node_modules
+dist
+
+#files
+*.tgz
+*.log
