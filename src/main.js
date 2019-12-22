@@ -4,7 +4,7 @@
  *           https://github.com/electron-userland/electron-builder
  *           https://github.com/electron-userland/electron-packager
  *           https://www.electron.build/multi-platform-build
- *           
+ *
  * Debugging: https://electronjs.org/docs/tutorial/debugging-main-process-vscode
  *            https://code.visualstudio.com/docs/nodejs/nodejs-debugging
  **/
@@ -17,14 +17,19 @@ const {app, BrowserWindow} = require('electron')
 let mainWindow
 
 function createWindow () {
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    icon: __dirname + '/icon.png',
     webPreferences: {
-      nodeIntegration: true
+      contextIsolation: true,
+      nodeIntegration: false
     }
   })
+
+  mainWindow.loadFile('./src/index.html');
 
   // Load the index.html of the app.
   // We can use this as the landing page of the app, 

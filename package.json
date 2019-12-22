@@ -1,10 +1,10 @@
 {
   "name": "app-electron",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "version": "420.19.340",
+  "description": "OpenTHC Desktop Application Integration",
   "main": "./src/main.js",
   "scripts": {
-    "start": "npm install && electron ./src/main.js --url=https://openthc.com",
+    "start": "npm install && electron ./src/main.js --url=https://app.openthc.com/auth/app",
     "postinstall": "install-app-deps",
     "pack": "build --dir",
     "dist": "build"
@@ -22,5 +22,8 @@
   },
   "dependencies": {
     "node-getopt": "^0.3.2"
+  },
+  "build": {
+    "appId": "com.openthc.app"
   }
 }
