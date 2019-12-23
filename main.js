@@ -12,6 +12,8 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 
+console.log(__dirname);
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -21,46 +23,19 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
+    minWidth: 800,
     height: 600,
-    icon: __dirname + '/icon.png',
+    minHeight: 600,
+    center: true,
+    icon: __dirname + '/icon.ico',
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: false
     }
   })
 
-  mainWindow.loadFile('./src/index.html');
+  mainWindow.loadFile('index.html');
 
-  // Load the index.html of the app.
-  // We can use this as the landing page of the app, 
-  // so we're not dependent on WT production for initial experience
-  // A special app lander gives us an opportunity to run app-specific bootstrap code
-  // when the app starts, when the app starts for the very first time, etc.
-  // mainWindow.loadFile('index.html')
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
-
-  // Build application resource
-  // create Getopt instance
-  let getopt = require('node-getopt').create([
-    ['U' , 'url=URL'   , 'Supply client URL.'],
-    ['h' , 'help'],
-  ]).bindHelp() // bind option 'help' to default action
-
-  const opt = getopt.parse(process.argv.slice(2))
-  let URL = opt.options.url;
-  
-  // Load Application Site
-  mainWindow.loadURL(URL)
-
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null
-  })
 }
 
 // This method will be called when Electron has finished
@@ -83,3 +58,34 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+  // // Load the index.html of the app.
+  // // We can use this as the landing page of the app,
+  // // so we're not dependent on WT production for initial experience
+  // // A special app lander gives us an opportunity to run app-specific bootstrap code
+  // // when the app starts, when the app starts for the very first time, etc.
+  // // mainWindow.loadFile('index.html')
+
+  // // Open the DevTools.
+  // // mainWindow.webContents.openDevTools()
+
+  // // Build application resource
+  // // create Getopt instance
+  // let getopt = require('node-getopt').create([
+  //   ['U' , 'url=URL'   , 'Supply client URL.'],
+  //   ['h' , 'help'],
+  // ]).bindHelp() // bind option 'help' to default action
+
+  // const opt = getopt.parse(process.argv.slice(2))
+  // let URL = opt.options.url;
+
+  // // Load Application Site
+  // // mainWindow.loadURL(URL)
+
+  // // Emitted when the window is closed.
+  // // mainWindow.on('closed', function () {
+  // //   // Dereference the window object, usually you would store windows
+  // //   // in an array if your app supports multi windows, this is the time
+  // //   // when you should delete the corresponding element.
+  // //   mainWindow = null
+  // // })

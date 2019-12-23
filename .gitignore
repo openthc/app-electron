@@ -1,4 +1,7 @@
-# Source: https://gist.github.com/Vj3k0/a934076c4cca30ec8e54
+#
+# Ignore for Electron
+#
+
 #directories
 bower_components
 node_modules
