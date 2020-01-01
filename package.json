@@ -32,17 +32,11 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [
-            "ia32",
-            "x64"
-          ]
+          "arch": [ "x64" ]
         },
         {
           "target": "portable",
-          "arch": [
-            "ia32",
-            "x64"
-          ]
+          "arch": [ "x64" ]
         }
       ]
     },
@@ -67,7 +61,7 @@
       ]
     },
     "linux": {
-      "icon": "./icon-256.png",
+      "icon": "./icons/256x256.png",
       "executableName": "openthc",
       "synopsis": "",
       "description": "",

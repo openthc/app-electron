@@ -10,13 +10,14 @@
  **/
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
 
 console.log(__dirname);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let systemPrinterList
 
 function createWindow () {
 
@@ -27,15 +28,34 @@ function createWindow () {
     height: 600,
     minHeight: 600,
     center: true,
-    icon: __dirname + '/icon.ico',
+    icon: __dirname + '/icon-512.png',
     webPreferences: {
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      plugins: true
     }
   })
 
   mainWindow.loadFile('index.html');
 
+  systemPrinterList = mainWindow.webContents.getPrinters()
+
+}
+
+function printDirect()
+{
+  var args = {
+    silent: true,
+    printBackground: false,
+    margin: {
+      marginType: 'none'
+    },
+    scaleFactor: 100
+  }
+
+  mainWindow.webContents.print(args, (stat, code) => {
+    // Callback Function Here
+  })
 }
 
 // This method will be called when Electron has finished
