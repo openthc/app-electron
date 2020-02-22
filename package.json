@@ -1,6 +1,6 @@
 {
-  "name": "app-electron",
-  "version": "420.19.340",
+  "name": "OpenTHC",
+  "version": "420.20.050",
   "description": "OpenTHC Desktop Application Integration",
   "main": "main.js",
   "scripts": {
@@ -12,17 +12,17 @@
   "repository": "https://github.com/openthc/app-electron",
   "author": {
     "name": "OpenTHC, Inc.",
-    "email": "root@openthc.com",
+    "email": "code@openthc.com",
     "url": "https://openthc.com"
   },
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "electron": "^5.0.13",
+    "electron": "^8.0.1",
     "electron-builder": "21.2.0"
   },
   "dependencies": {
     "node-getopt": "^0.3.2",
-    "yarn": "^1.21.1"
+    "yarn": "^1.22.0"
   },
   "build": {
     "appId": "com.openthc.app",
@@ -32,11 +32,15 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [ "x64" ]
+          "arch": [
+            "x64"
+          ]
         },
         {
           "target": "portable",
-          "arch": [ "x64" ]
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },
@@ -69,7 +73,10 @@
       "target": [
         {
           "target": "tar.gz",
-          "arch": [ "x64", "armv7l" ]
+          "arch": [
+            "x64",
+            "armv7l"
+          ]
         }
       ]
     }
