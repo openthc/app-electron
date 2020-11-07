@@ -4,7 +4,7 @@
   "description": "OpenTHC Desktop Application Integration",
   "main": "main.js",
   "scripts": {
-    "start": "npm install && electron ./src/main.js --url=https://app.openthc.com/auth/app",
+    "start": "npm install && electron ./main.js",
     "postinstall": "install-app-deps",
     "pack": "build --dir",
     "dist": "build"
@@ -17,10 +17,11 @@
   },
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "electron": "^8.0.1",
-    "electron-builder": "21.2.0"
+    "electron": "^8.5.0",
+    "electron-builder": "^22.9.0"
   },
   "dependencies": {
+    "electron-nightly": "^12.0.0-nightly.20200221",
     "node-getopt": "^0.3.2",
     "yarn": "^1.22.0"
   },

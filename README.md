@@ -4,11 +4,10 @@ This app is the minimal scaffolding necessary for OpenTHC to deploy services in 
 
 You can run directly from the repo-root or build and put on your machines.
 
-    ./node_modules/.bin/electron ./
+    npm start -- --url=<app_host>
+    ./node_modules/.bin/electron ./ --url=<app_host>
 
 ## Configuration
-
-    ./node_modules/.bin/electron ./ --url=[application host]
 
 Other configuration options may be specific to your build, or your companies build.
 Typically these are stored in the application root as `config.json`.
