@@ -10,21 +10,40 @@
  **/
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
-
-console.log(__dirname);
+const { app, session, BrowserWindow } = require('electron')
 
 app.allowRendererProcessReuse = true;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
-let systemPrinterList
+let systemPrinterList // printer dreams
+
+// Crappy Parse from Command Line
+const app_url = (function() {
+
+  var idx = 0;
+  var max = process.argv.length;
+  var arg = null;
+  var url = null;
+  for (idx; idx<max; idx++) {
+    arg = process.argv[idx];
+    if (url = arg.match(/\-\-url=(.+)/)) {
+      console.log('url', url);
+      return url[1];
+    }
+  }
+
+  return '';
+
+})();
 
 function createWindow () {
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    backgroundColor: '#101010',
+    darkTheme: true,
     width: 800,
     minWidth: 800,
     height: 600,
@@ -40,12 +59,31 @@ function createWindow () {
     }
   })
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL(`file://${__dirname}/index.html?r=${app_url}`);
+
+  mainWindow.webContents.on('did-fail-load', function(e) {
+    console.log(e);
+  });
+
+  mainWindow.webContents.on('did-fail-provisional-load', function(e) {
+    console.log(e);
+  });
+
+  // Trap this and do something smart
+  mainWindow.webContents.on('new-window', function(e) {
+    console.log(e);
+  });
+
+  // Try to Decipher if Scanner Input?
+  mainWindow.webContents.on('before-input-event', function(e) {
+    console.log(e);
+  });
 
   systemPrinterList = mainWindow.webContents.getPrinters()
 
 }
 
+// https://stackoverflow.com/questions/46012272/silent-printing-in-electron
 function printDirect()
 {
   var args = {
@@ -60,6 +98,7 @@ function printDirect()
   mainWindow.webContents.print(args, (stat, code) => {
     // Callback Function Here
   })
+
 }
 
 // This method will be called when Electron has finished
