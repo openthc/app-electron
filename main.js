@@ -11,6 +11,7 @@
 
 // Modules to control application life and create native browser window
 const { app, session, BrowserWindow } = require('electron')
+const path = require('path')
 
 app.allowRendererProcessReuse = true;
 
@@ -42,27 +43,29 @@ function createWindow () {
 
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    backgroundColor: '#101010',
+    backgroundColor: '#10101066',
     darkTheme: true,
     width: 800,
     minWidth: 800,
     height: 600,
     minHeight: 600,
     center: true,
-    icon: __dirname + '/icon-512.png',
+    icon: path.join(__dirname, 'icon-512.png'),
     webPreferences: {
       contextIsolation: true,
       enableRemoteModule: false,
       // nativeWindowOpen: true, // Doesn't work for us
       nodeIntegration: false,
-      plugins: true
+      plugins: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   })
 
   mainWindow.loadURL(`file://${__dirname}/index.html?r=${app_url}`);
 
   mainWindow.webContents.on('did-fail-load', function(e) {
-    console.log(e);
+    console.log('did-fail-load');
+    //console.log(e);
   });
 
   mainWindow.webContents.on('did-fail-provisional-load', function(e) {
@@ -76,7 +79,7 @@ function createWindow () {
 
   // Try to Decipher if Scanner Input?
   mainWindow.webContents.on('before-input-event', function(e) {
-    console.log(e);
+    // console.log(e);
   });
 
   systemPrinterList = mainWindow.webContents.getPrinters()
@@ -101,10 +104,12 @@ function printDirect()
 
 }
 
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow)
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
