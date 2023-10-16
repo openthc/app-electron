@@ -2,7 +2,7 @@
  * Example Polling Service Worker
  */
 
-var lab_host = 'lab.openthc.dev';
+var lab_host = 'lab.openthc.example';
 
 // Service Definition Attempt
 var service_list = [];
@@ -19,7 +19,7 @@ service_file.push({
 	path: "\\\\host_b\\path\\*.csv"
 });
 service_file.push({
-	name: "Instrument 3"
+	name: "Instrument 3",
 	path: "ftp://user:pass@host_c/path_c"
 });
 
@@ -42,5 +42,5 @@ for (service_list as s) {
 			file: file.name,
 		});
 	}
-}
+
 }
